@@ -6,4 +6,4 @@ COPY package.json package-lock.json /app/
 RUN npm install
 
 COPY . .
-ENTRYPOINT [ "executable" ]
+ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
