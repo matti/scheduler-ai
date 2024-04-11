@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 const app = express();
 const port = process.env.PORT || 3001;
 
-const upload = multer({storage: multer.memoryStorage() });
+const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -24,7 +24,7 @@ app.post('/run', async (req, res) => {
     const prompt = req.body.prompt;
     if (!prompt) {
         console.log(req.body)
-        return res.status(400).json({ error: 'missing parameter "prompt"'})
+        return res.status(400).json({ error: 'missing parameter "prompt"' })
     }
 
     exec(`node scheduler.mjs -o .\\public\\script.json .\\public\\script.json "${prompt}"`, (err, stdout, stderr) => {
@@ -39,7 +39,7 @@ app.post('/run', async (req, res) => {
 
 app.post('/upload', upload.single('file'), async (req, res) => {
     if (!req.file) {
-        return res.status(400).json({error: 'No files were uploaded.'});
+        return res.status(400).json({ error: 'No files were uploaded.' });
     }
     const file = req.file.buffer;
 
@@ -47,4 +47,4 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     res.json({ status: 200 })
 })
 
-app.listen(port, 'localhost', () => { console.log(`http://localhost:${port}`); });
+app.listen(port, 'localhost', () => { console.log(`http://0.0.0.0:${port}`); });
