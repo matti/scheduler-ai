@@ -47,4 +47,4 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     res.json({ status: 200 })
 })
 
-app.listen(port, 'localhost', () => { console.log(`http://0.0.0.0:${port}`); });
+app.listen(port, '0.0.0.0', () => { console.log(`http://0.0.0.0:${port}`); });
