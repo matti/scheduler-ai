@@ -27,7 +27,7 @@ app.post('/run', async (req, res) => {
         return res.status(400).json({ error: 'missing parameter "prompt"' })
     }
 
-    exec(`node scheduler.mjs -o .\\public\\script.json .\\public\\script.json "${prompt}"`, (err, stdout, stderr) => {
+    exec(`node scheduler.mjs -o ./public/script.json ./public/script.json "${prompt}"`, (err, stdout, stderr) => {
         if (stderr) {
             return res.status(500).json({ error: stderr })
         } else {
